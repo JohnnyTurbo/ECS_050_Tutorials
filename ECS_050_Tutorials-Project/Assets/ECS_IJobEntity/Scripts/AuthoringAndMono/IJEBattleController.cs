@@ -23,13 +23,6 @@ namespace TMG.IJE
         {
             var effectModifier = _effectTypeDropdown.value == 0 ? 1 : -1;
             var effectAmount = int.Parse(_hitPointsInputField.text) * effectModifier;
-
-            new PerformSpellJob
-            {
-                EffectAmount = 10,
-                ECB = World.DefaultGameObjectInjectionWorld.GetExistingSystem<EndSimulationEntityCommandBufferSystem>()
-                    .CreateCommandBuffer().AsParallelWriter()
-            }.ScheduleParallel();
             
             var newSpellExecutionData = new SpellExecutionData
             {
