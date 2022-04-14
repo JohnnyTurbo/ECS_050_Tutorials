@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-21394
+  m_Name: pb_Mesh26796
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -140,8 +140,8 @@ Mesh:
     firstVertex: 0
     vertexCount: 4
     localAABB:
-      m_Center: {x: 6.735406, y: 0, z: 20.547619}
-      m_Extent: {x: 6.735406, y: 0, z: 20.547619}
+      m_Center: {x: 6.735406, y: 0, z: 37.0192}
+      m_Extent: {x: 6.735406, y: 0, z: 37.0192}
   m_Shapes:
     vertices: []
     shapes: []
@@ -220,7 +220,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 192
-    _typelessdata: 000000000000000000000000000000000000803f000000000000803f0000000000000000000080bf0000000000000000000000000000000086612442000000000000803f000000000000803f0000000000000000000080bf0000000086612442728857410000000000000000000000000000803f000000000000803f0000000000000000000080bf7288574100000000728857410000000086612442000000000000803f000000000000803f0000000000000000000080bf7288574186612442
+    _typelessdata: 000000000000000000000000000000000000803f000000000000803f0000000000000000000080bf00000000000000000000000000000000a9139442000000000000803f000000000000803f0000000000000000000080bf00000000a9139442728857410000000000000000000000000000803f000000000000803f0000000000000000000080bf72885741000000007288574100000000a9139442000000000000803f000000000000803f0000000000000000000080bf72885741a9139442
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -274,8 +274,8 @@ Mesh:
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
-    m_Center: {x: 6.735406, y: 0, z: 20.547619}
-    m_Extent: {x: 6.735406, y: 0, z: 20.547619}
+    m_Center: {x: 6.735406, y: 0, z: 37.0192}
+    m_Extent: {x: 6.735406, y: 0, z: 37.0192}
   m_MeshUsageFlags: 0
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 896362391}
   - component: {fileID: 896362390}
   - component: {fileID: 896362389}
+  - component: {fileID: 896362392}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -487,13 +488,46 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896362388}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.21124522, y: -0.40830383, z: 0.09771691, w: 0.8826749}
+  m_LocalPosition: {x: 12.26, y: 6.93, z: -2.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 26.918, y: -49.648, z: 0}
+--- !u!114 &896362392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896362388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!850595691 &936632007
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -818,14 +852,14 @@ MonoBehaviour:
   m_SharedTextures: []
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 41.095238}
+  - {x: 0, y: 0, z: 74.0384}
   - {x: 13.470812, y: 0, z: 0}
-  - {x: 13.470812, y: 0, z: 41.095238}
+  - {x: 13.470812, y: 0, z: 74.0384}
   m_Textures0:
   - {x: 0, y: 0}
-  - {x: 0, y: 41.095238}
+  - {x: 0, y: 74.0384}
   - {x: 13.470812, y: 0}
-  - {x: 13.470812, y: 41.095238}
+  - {x: 13.470812, y: 74.0384}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -961,7 +995,6 @@ GameObject:
   - component: {fileID: 2042877749}
   - component: {fileID: 2042877748}
   - component: {fileID: 2042877747}
-  - component: {fileID: 2042877746}
   - component: {fileID: 2042877745}
   - component: {fileID: 2042877744}
   m_Layer: 0
@@ -996,19 +1029,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
---- !u!114 &2042877746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042877743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8bc63dbade144ebb7150916da4bdfed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 5
 --- !u!136 &2042877747
 CapsuleCollider:
   m_ObjectHideFlags: 0

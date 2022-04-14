@@ -3,5 +3,5 @@
 namespace TMG.IJE 
 {
     [GenerateAuthoringComponent]
-    public struct CoolTag : IComponentData {}
+    public struct SpecialMoveTag : IComponentData {}
 }
