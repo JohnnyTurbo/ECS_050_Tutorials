@@ -8,7 +8,7 @@ namespace TMG.ECSDebug
         protected override void OnCreate()
         {
             var debugArchetype = EntityManager.CreateArchetype(typeof(LargeComponent));
-            EntityManager.CreateEntity(debugArchetype, 1000);
+            EntityManager.CreateEntity(debugArchetype, 10000);
         }
         
         protected override void OnUpdate()

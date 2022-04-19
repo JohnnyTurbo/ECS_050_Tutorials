@@ -1,5 +1,6 @@
 ﻿using Unity.Collections;
 using Unity.Entities;
+using UnityEngine;
 
 namespace TMG.ECSDebug
 {
@@ -22,21 +23,30 @@ namespace TMG.ECSDebug
         protected override void OnUpdate()
         {
             var ecb = _ecbSystem.CreateCommandBuffer().AsParallelWriter();
-            
-            Entities.WithAll<TestTag,BestTag>().ForEach((Entity e, int entityInQueryIndex) =>
+
+            Entities.WithAll<TestTag,TestData>().ForEach((Entity e, int entityInQueryIndex) =>
             {
-                ecb.RemoveComponent<BestTag>(entityInQueryIndex, e);
+                ecb.RemoveComponent<TestData>(entityInQueryIndex, e);
             }).ScheduleParallel();
-            
-            Entities.WithAll<TestTag>().WithNone<BestTag>().ForEach((Entity e, int entityInQueryIndex) =>
+
+            Entities.WithAll<TestTag>().WithNone<TestData>().ForEach((Entity e, int entityInQueryIndex) =>
             {
-                ecb.AddComponent<BestTag>(entityInQueryIndex, e);
+                ecb.AddComponent<TestData>(entityInQueryIndex, e);
             }).ScheduleParallel();
             
             _ecbSystem.AddJobHandleForProducer(Dependency);
+            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("Breakpoint!");
+            }
         }
     }
-    
-    public struct TestTag : IComponentData{}
-    public struct BestTag : IComponentData{}
+
+    public struct TestTag : IComponentData {}
+
+    public struct TestData : IComponentData
+    {
+        public int Value;
+    }
 }
