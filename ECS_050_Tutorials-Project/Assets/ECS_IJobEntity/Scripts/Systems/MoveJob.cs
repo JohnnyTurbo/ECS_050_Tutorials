@@ -2,38 +2,74 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace TMG.IJE
 {
     public partial class MovementSystem : SystemBase
     {
+        private EntityQuery _regularMoveQuery;
+        private EntityQuery _specialMoveQuery;
+        private EntityQuery _invalidQuery;
+        
+        protected override void OnStartRunning()
+        {
+            _regularMoveQuery = EntityManager.CreateEntityQuery(
+                ComponentType.ReadWrite<Translation>(), 
+                ComponentType.ReadOnly<MoveSpeed>(), 
+                ComponentType.Exclude<SpecialMoveTag>());
+            
+            _specialMoveQuery = EntityManager.CreateEntityQuery(
+                ComponentType.ReadWrite<Translation>(), 
+                ComponentType.ReadOnly<MoveSpeed>(), 
+                ComponentType.ReadOnly<SpecialMoveTag>());
+            
+            _invalidQuery = EntityManager.CreateEntityQuery(
+                ComponentType.ReadOnly<SpecialMoveTag>(), 
+                ComponentType.Exclude<MoveSpeed>());
+        }
+        
         protected override void OnUpdate()
         {
-            var specialMoveQuery = EntityManager.CreateEntityQuery(ComponentType.ReadOnly<MoveSpeed>(), ComponentType.ReadOnly<SpecialMoveTag>());
-            var regularMoveDesc = new EntityQueryDesc
+            var newMoveJob = new MoveJob
             {
-                All = new[] { ComponentType.ReadWrite<Translation>(), ComponentType.ReadOnly<MoveSpeed>() },
-                None = new[] { ComponentType.ReadOnly<SpecialMoveTag>() }
+                DeltaTime = Time.DeltaTime,
+                MoveMod = 1f
             };
-
-            var regularMoveQuery = EntityManager.CreateEntityQuery(regularMoveDesc);
             
-            var moveJob = new MoveJob { DeltaTime = Time.DeltaTime, MoveModifier = 1f};
-            moveJob.ScheduleParallel(regularMoveQuery);
-            moveJob.MoveModifier = 0.5f;
-            moveJob.ScheduleParallel(specialMoveQuery);
+            newMoveJob.ScheduleParallel(_regularMoveQuery);
+
+            newMoveJob.MoveMod = 0.25f;
+            
+            newMoveJob.ScheduleParallel(_specialMoveQuery);
+
+            newMoveJob.ScheduleParallel(_invalidQuery);
         }
     }
     
+    [BurstCompile]
     public partial struct MoveJob : IJobEntity
     {
         public float DeltaTime;
-        public float MoveModifier;
-        
-        public void Execute(ref Translation translation, in MoveSpeed moveSpeed)
+        public float MoveMod;
+
+        void Execute(ref Translation translation, in MoveSpeed moveSpeed)
         {
-            translation.Value += math.forward() * moveSpeed.Value * MoveModifier * DeltaTime;
+            translation.Value += math.forward() * moveSpeed.Value * DeltaTime * MoveMod;
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

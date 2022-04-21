@@ -26,13 +26,13 @@ namespace TMG.IJE
             switch (spellExecution.TeamID)
             {
                 case 0:
-                    var team0 = new TeamID { Value = 0 };
-                    battleEntityQuery.SetSharedComponentFilter(team0);
+                    var team1 = new TeamID { Value = 0 };
+                    battleEntityQuery.SetSharedComponentFilter(team1);
                     break;
                 
                 case 1:
-                    var team1 = new TeamID { Value = 1 };
-                    battleEntityQuery.SetSharedComponentFilter(team1);
+                    var team2 = new TeamID { Value = 1 };
+                    battleEntityQuery.SetSharedComponentFilter(team2);
                     break;
             }
             
@@ -47,3 +47,15 @@ namespace TMG.IJE
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
