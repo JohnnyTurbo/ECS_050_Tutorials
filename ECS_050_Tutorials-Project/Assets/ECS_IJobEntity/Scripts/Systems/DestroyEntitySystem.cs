@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace TMG.IJE
 {
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public partial class DestroyEntitySystem : SystemBase
     {
         protected override void OnUpdate()
