@@ -27,6 +27,7 @@ SpaceSkies\ Free/
 SpaceSkies\ Free.meta
 MaterialPropertyOverrides-Demo.unity
 ExportedProjectFiles/
+ProjectFiles/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

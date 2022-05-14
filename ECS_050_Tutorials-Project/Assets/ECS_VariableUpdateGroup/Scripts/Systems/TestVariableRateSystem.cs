@@ -16,7 +16,11 @@ namespace TMG.VariableUpdateGroup
 
         protected override void OnStartRunning()
         {
-            var rateManager = new RateUtils.VariableRateManager(1000, true);
+            
+            
+            IRateManager rateManager = new RateUtils.VariableRateManager(500);
+            
+            
             var variableRateSystem = World.GetExistingSystem<VariableRateSimulationSystemGroup>();
             variableRateSystem.RateManager = rateManager;
         }
