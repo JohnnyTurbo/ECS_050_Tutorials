@@ -9,6 +9,7 @@ using Random = Unity.Mathematics.Random;
 
 namespace TMG.VariableUpdateGroup
 {
+    [DisableAutoCreation]
     [UpdateInGroup(typeof(VariableRateSimulationSystemGroup))]
     public partial class TestVariableRateSystem : SystemBase
     {
@@ -41,6 +42,7 @@ namespace TMG.VariableUpdateGroup
         }
     }
 
+    [DisableAutoCreation]
     [UpdateInGroup(typeof(TurboUpdateGroup))]
     public partial class ExpensiveJobScheduler : SystemBase
     {
@@ -108,7 +110,8 @@ namespace TMG.VariableUpdateGroup
         public float3 Value;
     }
 
-    [AlwaysUpdateSystem]
+    [DisableAutoCreation]
+    //[AlwaysUpdateSystem]
     [UpdateInGroup(typeof(TurboUpdateGroup))]
     public partial class ExpensiveForEach : SystemBase
     {
@@ -157,6 +160,7 @@ namespace TMG.VariableUpdateGroup
         }
     }
 
+    [DisableAutoCreation]
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     //[UpdateInGroup(typeof(TurboUpdateGroup))]
     //[UpdateAfter(typeof(ExpensiveForEach))]
