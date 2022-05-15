@@ -3,11 +3,11 @@
 namespace TMG.ManagedComponents
 {
     [GenerateAuthoringComponent]
-    public class TestManaged : IComponentData
+    public class DemoManaged : IComponentData
     {
-        public delegate void TheBest();
+        public delegate void PrintMessage();
 
-        public TheBest Value;
+        public PrintMessage Message;
         public TestGameController Controller;
     }
 }

@@ -3,5 +3,5 @@
 namespace TMG.ManagedComponents
 {
     [GenerateAuthoringComponent]
-    public struct TestManagedTag : IComponentData {}
+    public struct DemoManagedTag : IComponentData {}
 }

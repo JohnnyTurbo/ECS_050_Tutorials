@@ -14,17 +14,18 @@ namespace TMG.ECSPrefabs
         private Random _random;
         private float3 _minPos = float3.zero;
         private float3 _maxPos = new float3(50, 0, 50);
-        private BeginSimulationEntityCommandBufferSystem _ecbSystem;
+        private EndSimulationEntityCommandBufferSystem _ecbSystem;
 
         protected override void OnStartRunning()
         {
             Application.targetFrameRate = 30;
             _capsulePrefab = GetSingleton<CapsulePrefab>().Value;
+            
             _random.InitState(454);
-            _ecbSystem = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
+            _ecbSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
             
             _capsuleSpawner = GetSingletonEntity<LastSpawnedCapsule>();
-            EntityManager.AddBuffer<CapsuleReferenceBufferElement>(_capsuleSpawner);
+            EntityManager.AddBuffer<SpawnedCapsuleBufferElement>(_capsuleSpawner);
         }
 
         protected override void OnUpdate()
@@ -33,24 +34,29 @@ namespace TMG.ECSPrefabs
 
             if (Input.GetKeyDown(KeyCode.A))
             {
-                var newCap = EntityManager.Instantiate(_capsulePrefab);
+                var newCapsule = EntityManager.Instantiate(_capsulePrefab);
                 var randPos = _random.NextFloat3(_minPos, _maxPos);
                 var newPos = new Translation { Value = randPos };
-                //var newPos2 = new LocalToWorld { Value = new float4x4(quaternion.identity, randPos) };
-                EntityManager.SetComponentData(newCap, newPos);
-                //EntityManager.SetComponentData(newCap, newPos2);
+                EntityManager.SetComponentData(newCapsule, newPos);
                 
-                SetSingleton(new LastSpawnedCapsule{Value = newCap});
+                var localToWorld = new LocalToWorld { Value = new float4x4(quaternion.identity, randPos) };
+                EntityManager.SetComponentData(newCapsule, localToWorld);
+                
+                SetSingleton(new LastSpawnedCapsule{Value = newCapsule});
+                Debug.Break();
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
-                var newCap = ecb.Instantiate(_capsulePrefab);
+                var newCapsule = ecb.Instantiate(_capsulePrefab);
                 var randPos = _random.NextFloat3(_minPos, _maxPos);
                 var newPos = new Translation { Value = randPos };
-                ecb.SetComponent(newCap, newPos);
-                ecb.AppendToBuffer(_capsuleSpawner, new CapsuleReferenceBufferElement{Value = newCap});
+                var localToWorld = new LocalToWorld { Value = new float4x4(quaternion.identity, randPos) };
+                ecb.SetComponent(newCapsule, newPos);
+                ecb.SetComponent(newCapsule, localToWorld);
+                ecb.AppendToBuffer(_capsuleSpawner, new SpawnedCapsuleBufferElement{Value = newCapsule});
                 //SetSingleton(new LastSpawnedCapsule{Value = newCap});
+                Debug.Break();
             }
 
             var lastSpawned = GetSingleton<LastSpawnedCapsule>().Value;
@@ -63,11 +69,11 @@ namespace TMG.ECSPrefabs
         }
     }
     
-    public partial class BufferCleanup : SystemBase
+    public partial class SetLastCapsuleSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Entities.ForEach((Entity e, DynamicBuffer<CapsuleReferenceBufferElement> capBuf, ref LastSpawnedCapsule lastCap) =>
+            Entities.ForEach((Entity e, DynamicBuffer<SpawnedCapsuleBufferElement> capBuf, ref LastSpawnedCapsule lastCap) =>
             {
                 if(capBuf.IsEmpty){ return; }
                 lastCap.Value = capBuf[capBuf.Length - 1].Value;
@@ -76,3 +82,26 @@ namespace TMG.ECSPrefabs
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
