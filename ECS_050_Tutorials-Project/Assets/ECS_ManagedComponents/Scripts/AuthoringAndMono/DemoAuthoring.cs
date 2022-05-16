@@ -1,4 +1,5 @@
 ﻿using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace TMG.ManagedComponents
@@ -9,17 +10,19 @@ namespace TMG.ManagedComponents
         
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
+            dstManager.AddComponent<CopyTransformFromGameObject>(entity);
             dstManager.AddComponentObject(entity, _transform);
         }
     }
     
+    [UpdateBefore(typeof(TransformSystemGroup))]
     public partial class MoveTransformSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Entities.ForEach((Entity e, Transform managedTransform) =>
+            Entities.ForEach((Transform managedTransform) =>
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKey(KeyCode.Space))
                 {
                     managedTransform.position = Vector3.up;
                 }
@@ -36,7 +39,7 @@ namespace TMG.ManagedComponents
             var managedComponent = EntityManager.GetComponentData<DemoManaged>(entityWithManagedData);
 
             managedComponent.Message = ImportantMessage;
-            managedComponent.Controller = TestGameController.Instance;
+            managedComponent.Controller = DemoGameController.Instance;
         }
 
         private void ImportantMessage()
@@ -46,7 +49,7 @@ namespace TMG.ManagedComponents
         
         protected override void OnUpdate()
         {
-            Entities.ForEach((Entity e, DemoManaged managed) =>
+            Entities.ForEach((DemoManaged managed) =>
             {
                 if (Input.GetKeyDown(KeyCode.P))
                 {

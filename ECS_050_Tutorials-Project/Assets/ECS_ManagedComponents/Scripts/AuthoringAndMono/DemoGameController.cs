@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace TMG.ManagedComponents
 {
-    public class TestGameController : MonoBehaviour
+    public class DemoGameController : MonoBehaviour
     {
-        public static TestGameController Instance;
+        public static DemoGameController Instance;
         
         private int _team1Score;
         private int _team2Score;
@@ -32,7 +32,7 @@ namespace TMG.ManagedComponents
                     break;
             }
             
-            Debug.Log($"Team {teamID} scored {score} point(s).\nThe score is now {_team1Score} - {_team2Score}");
+            Debug.Log($"Team {teamID} scored {score} point(s). The score is now {_team1Score} - {_team2Score}");
         }
     }
 }

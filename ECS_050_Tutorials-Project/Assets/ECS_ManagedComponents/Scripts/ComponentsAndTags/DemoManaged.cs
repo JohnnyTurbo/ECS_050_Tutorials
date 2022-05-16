@@ -8,6 +8,6 @@ namespace TMG.ManagedComponents
         public delegate void PrintMessage();
 
         public PrintMessage Message;
-        public TestGameController Controller;
+        public DemoGameController Controller;
     }
 }
