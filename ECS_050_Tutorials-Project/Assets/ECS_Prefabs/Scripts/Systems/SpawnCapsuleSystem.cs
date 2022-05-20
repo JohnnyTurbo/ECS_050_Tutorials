@@ -39,6 +39,7 @@ namespace TMG.ECSPrefabs
                 var randPos = _random.NextFloat3(_minPos, _maxPos);
                 var newPos = new Translation { Value = randPos };
                 EntityManager.SetComponentData(newCapsule, newPos);
+                Debug.Break();
             }
 
             if (Input.GetKeyDown(KeyCode.S))
