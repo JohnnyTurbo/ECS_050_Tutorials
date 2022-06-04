@@ -10,14 +10,14 @@ namespace TMG.AnimationCurves
 
         public float GetValueAtTime(float time)
         {
-            var approxIndex = (NumberOfSamples - 1) * time;
-            var indexBelow = (int)math.floor(approxIndex);
-            if (indexBelow >= NumberOfSamples - 1)
+            var approxSampleIndex = (NumberOfSamples - 1) * time;
+            var sampleIndexBelow = (int)math.floor(approxSampleIndex);
+            if (sampleIndexBelow >= NumberOfSamples - 1)
             {
                 return SampledPoints[NumberOfSamples - 1];
             }
-            var indexRemainder = approxIndex - indexBelow;
-            return math.lerp(SampledPoints[indexBelow], SampledPoints[indexBelow + 1], indexRemainder);
+            var indexRemainder = approxSampleIndex - sampleIndexBelow;
+            return math.lerp(SampledPoints[sampleIndexBelow], SampledPoints[sampleIndexBelow + 1], indexRemainder);
         }
     }
 }
