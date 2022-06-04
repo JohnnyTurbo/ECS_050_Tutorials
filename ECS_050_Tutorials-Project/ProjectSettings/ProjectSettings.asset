@@ -593,7 +593,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: DOTS_ADD_PARTIAL_KEYWORD
+    1: DOTS_ADD_PARTIAL_KEYWORD;SHAPES_URP
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
