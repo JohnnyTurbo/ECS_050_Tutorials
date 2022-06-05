@@ -375,7 +375,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _visualFidelity: 512
-  _samplePoint: 6.63
+  _samplePoint: 14.64
   _pointMode: 1
 --- !u!4 &894888039
 Transform:

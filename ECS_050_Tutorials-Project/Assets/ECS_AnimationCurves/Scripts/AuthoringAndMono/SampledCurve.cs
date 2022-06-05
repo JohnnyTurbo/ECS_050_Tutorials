@@ -7,7 +7,7 @@ namespace TMG.AnimationCurves
     {
         public BlobArray<float> SampledPoints;
         public int NumberOfSamples;
-
+        
         public float GetValueAtTime(float time)
         {
             var approxSampleIndex = (NumberOfSamples - 1) * time;
