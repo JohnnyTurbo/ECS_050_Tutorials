@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Shapes;
 using Unity.Mathematics;
@@ -27,7 +27,32 @@ namespace TMG.AnimationCurveVisualization
         [SerializeField] private int _visualFidelity;
         [SerializeField] private float _samplePoint;
         [SerializeField] private PointMode _pointMode;
+        [SerializeField] private float _traversalSpeed;
+
+        private float _traversalTimer = 0f;
         
+        private void Start()
+        {
+            //StartCoroutine(TraverseGraph());
+        }
+
+        private IEnumerator TraverseGraph()
+        {
+            while (true)
+            {
+                var traversalTime = _traversalTimer / _traversalSpeed;
+                var traversalPoint = traversalTime * _gridSize.x;
+
+                _samplePoint = traversalPoint;
+
+                _traversalTimer += Time.deltaTime;
+                _traversalTimer %= _traversalSpeed;
+
+                yield return null;
+            }
+        }
+        
+        [ExecuteAlways]
         public override void DrawShapes(Camera cam)
         {
             using (Draw.Command(cam))
